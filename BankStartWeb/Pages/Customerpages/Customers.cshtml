@@ -14,7 +14,7 @@
            <td>@customer.Givenname</td>
            <td>@customer.Surname</td>
            <td>@customer.NationalId</td>
-            <a class="ctabutton" asp-page="/Customer" asp-route-customerId="@customer.Id">View</a> 
+          <td><a class="ctabutton" asp-page="/CustomerPages/Customer" asp-route-customerId="@customer.Id">View</a> </td>
        </tr>
         }
 </table>
