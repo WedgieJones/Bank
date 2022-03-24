@@ -6,3 +6,11 @@
 Customername: @Model.Givenname @Model.Surname
 Streetadress: @Model.Streetaddress
 City: @Model.City
+
+Accounts: 
+<ul>
+    @foreach(var account in Model.Accounts)
+    {
+    <li>@account.AccountType</li>
+    }
+</ul>
