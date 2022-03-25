@@ -8,9 +8,19 @@ Streetadress: @Model.Streetaddress
 City: @Model.City
 
 Accounts: 
-<ul>
-    @foreach(var account in Model.Accounts)
-    {
-    <li>@account.AccountType</li>
-    }
-</ul>
+   
+<table>
+    <tr>
+        <th>AccountType</th>
+        <th>AccountId</th>
+        <th></th>
+    </tr>
+       @foreach(var account in Model.Accounts)
+       {
+        <tr>
+           <td>@account.AccountType</td>
+           <td>@account.Id</td>
+          @*<td><a class="ctabutton" asp-page="/CustomerPages/Customer" asp-route-customerId="@customer.Id">View</a> </td>*@
+       </tr>
+        }
+</table>
