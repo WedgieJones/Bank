@@ -13,7 +13,5 @@ public class Account
     public DateTime Created { get; set; }
     public decimal Balance { get; set; }
 
-	public int CustomerId { get; set; }
-
 	public List<Transaction> Transactions { get; set; } = new List<Transaction>();
 }
