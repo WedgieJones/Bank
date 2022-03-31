@@ -2,11 +2,29 @@
 @model BankStartWeb.Pages.Customerpages.CustomersModel
 @{
 }
+
+<form method="get">
+    <input asp-for="@Model.SearchWord" />
+    <input type="submit" value="Sök"/>
+</form>
+
 <table>
     <tr>
-        <th>Firstname</th>
-        <th>Surname</th>
-        <th>NationalId</th>
+        <th>
+            <a asp-route-col="firstName" asp-route-order="asc" asp-page="/Customerpages/Customers"><i class='bx bx-sort-up'></i></a> 
+            Firstname
+            <a asp-route-col="firstName" asp-route-order="desc" asp-page="/Customerpages/Customers"><i class='bx bx-sort-down'></i></a>
+        </th>
+        <th>
+            <a asp-route-col="surname" asp-route-order="asc" asp-page="/Customerpages/Customers"><i class='bx bx-sort-up' ></i></a>
+                Surname
+            <a asp-route-col="surname" asp-route-order="desc" asp-page="/Customerpages/Customers"><i class='bx bx-sort-down'></i> </a>
+        </th>
+        <th>
+            <a asp-route-col="nationalid" asp-route-order="asc" asp-page="/Customerpages/Customers"><i class='bx bx-sort-up'></i> </a> 
+                NationalId
+            <a asp-route-col="nationalid" asp-route-order="desc" asp-page="/Customerpages/Customers"><i class='bx bx-sort-down'></i>  </a>
+        </th>
     </tr>
        @foreach(var customer in Model.Customers)
        {
