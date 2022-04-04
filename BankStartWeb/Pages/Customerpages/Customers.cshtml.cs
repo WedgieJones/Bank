@@ -47,28 +47,6 @@ namespace BankStartWeb.Pages.Customerpages
 				ExtensionMethods.QuerySortOrder.Desc);
 
 
-			//if(col == "firstName") 
-			//{
-			//	if (order == "asc")
-			//		cust = cust.OrderBy(cu => cu.Givenname);
-			//	else
-			//		cust = cust.OrderByDescending(cu => cu.Givenname);
-			//}
-			//else if(col== "surname")
-			//{
-			//	if(order =="asc")
-			//		cust = cust.OrderBy(cu => cu.Surname);
-			//	else
-			//		cust = cust.OrderByDescending(cu => cu.Surname);
-			//}
-			//else if (col == "nationalid")
-			//{
-			//	if (order == "asc")
-			//		cust = cust.OrderBy(cu => cu.NationalId);
-			//	else
-			//		cust = cust.OrderByDescending(cu => cu.NationalId);
-			//}
-
 			var pageResult = cust.GetPaged(pageno, 20);
 			TotalPageCount = pageResult.PageCount;
 

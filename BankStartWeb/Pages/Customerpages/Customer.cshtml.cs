@@ -51,19 +51,6 @@ namespace BankStartWeb.Pages.Customerpages
             Birthday = customer.Birthday;
 
 
-
-
-			//Accounts = (from cust in _context.Customers
-   //                    join account in _context.Accounts
-   //                    on cust.Id equals account.CustomerId
-   //                    where cust.Id == customerId
-   //                    select new Account {
-   //                        Id = account.Id,
-   //                        AccountType = account.AccountType,
-   //                        Customerid = customerId
-			//		   });
-			
-            //var result = _context.Accounts.Where(x => x.CustomerId == customerId).ToList();
              
         }
 

@@ -13,7 +13,7 @@ Accounts:
     <tr>
         <th>AccountType</th>
         <th>AccountId</th>
-        <th></th>
+        <th>Balance</th>
     </tr>
        @foreach(var account in Model.Accounts)
        {
@@ -21,7 +21,7 @@ Accounts:
            <td>@account.AccountType</td>
            <td>@account.Id</td>
            <td>@account.Balance</td>
-          @*<td><a class="ctabutton" asp-page="/CustomerPages/Customer" asp-route-customerId="@customer.Id">View</a> </td>*@
+          <td><a class="ctabutton" asp-page="/CustomerPages/Transactiondetals" asp-route-accountId="@account.Id">View</a> </td>
        </tr>
         }
 </table>

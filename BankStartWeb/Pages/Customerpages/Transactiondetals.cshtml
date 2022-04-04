@@ -1,0 +1,24 @@
+﻿@page
+@model BankStartWeb.Pages.Customerpages.TransactiondetalsModel
+@{
+}
+Customer; @Model.FullName
+AccountId: @Model.AccountId
+<table>
+    <tr>
+        <th>Transaction date</th>
+        <th>Handling</th>
+        <th>Debet/kredit</th>
+        <th>Belopp</th>
+    </tr>
+       @foreach(var transaction in Model.Transactions)
+       {
+        <tr>
+           <td>@transaction.Date</td>
+           <td>@transaction.Operation</td>
+           <td>@transaction.Type</td>
+           <td>@transaction.Amount</td>
+       </tr>
+       }
+       AccountBalance : @Model.Balance
+</table>
