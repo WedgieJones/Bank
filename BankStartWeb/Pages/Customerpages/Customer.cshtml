@@ -6,6 +6,15 @@
 Customername: @Model.Givenname @Model.Surname
 Streetadress: @Model.Streetaddress
 City: @Model.City
+Zipcode: @Model.Zipcode
+Country: @Model.Country
+Countrycode: @Model.CountryCode
+NationalId: @Model.NationalId
+Phone.CountryCode: @Model.TelephoneCountryCode
+Telephone; @Model.Telephone
+Email: @Model.EmailAddress
+Birthday: @Model.Birthday
+
 
 Accounts: 
    
@@ -13,6 +22,7 @@ Accounts:
     <tr>
         <th>AccountType</th>
         <th>AccountId</th>
+        <th>Created</th>
         <th>Balance</th>
     </tr>
        @foreach(var account in Model.Accounts)
@@ -20,8 +30,17 @@ Accounts:
         <tr>
            <td>@account.AccountType</td>
            <td>@account.Id</td>
+           <td>@account.Created</td>
            <td>@account.Balance</td>
           <td><a class="ctabutton" asp-page="/CustomerPages/Transactiondetals" asp-route-accountId="@account.Id">View</a> </td>
        </tr>
-        }
+       }
+       <tr>
+           <td>Total Balance</td>
+           <td></td>
+           <td></td>
+           <td>@Model.TotalBalance</td>
+           <td></td>
+       </tr>
+        
 </table>

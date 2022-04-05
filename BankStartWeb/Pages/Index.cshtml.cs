@@ -15,15 +15,15 @@ namespace BankStartWeb.Pages
             _logger = logger;
 			_context = context;
 		}
-
+        [BindProperty(SupportsGet = true)]
+        public int customerId { get; set; }
 		public int NumOfAccounts { get; set; }
         public int NumOfCustomers { get; set; }
 		public void OnGet()
         {
-
             NumOfAccounts = _context.Accounts.Count();
             NumOfCustomers = _context.Customers.Count();
 
-        }
+		}
     }
 }

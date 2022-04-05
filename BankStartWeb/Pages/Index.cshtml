@@ -9,6 +9,12 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
+<form asp-page="/CustomerPages/Customer" method="get">
+    <input asp-for=@Model.customerId ></input>
+    <input type="submit" value="Sök efter kund"></input>
+</form>
+
+
 
 Antal konton:  @Model.NumOfAccounts
 

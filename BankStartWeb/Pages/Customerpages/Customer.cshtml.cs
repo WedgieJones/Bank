@@ -2,7 +2,6 @@ using BankStartWeb.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-
 namespace BankStartWeb.Pages.Customerpages
 {
     public class CustomerModel : PageModel
@@ -28,10 +27,21 @@ namespace BankStartWeb.Pages.Customerpages
         public string EmailAddress { get; set; }
         public DateTime Birthday { get; set; }
         public List<Account> Accounts { get; set; } = new List<Account>();
+        public decimal TotalBalance { get; set; }
 
+        public class AccountViewModel
+		{
+            public int Id { get; set; }
 
+            public string AccountType { get; set; }
 
-        public void OnGet( int customerId)
+            public DateTime Created { get; set; }
+            public decimal Balance { get; set; }
+
+            public List<Transaction> Transactions { get; set; } = new List<Transaction>();
+        }
+
+        public void OnGet(int customerId)
         {
 			var customer = _context.Customers
                 .Include(a => a.Accounts)
@@ -50,7 +60,10 @@ namespace BankStartWeb.Pages.Customerpages
             EmailAddress = customer.EmailAddress;
             Birthday = customer.Birthday;
 
-
+            foreach (var account in Accounts)
+			{
+                TotalBalance = TotalBalance + account.Balance;
+			}
              
         }
 

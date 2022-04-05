@@ -14,14 +14,14 @@ namespace BankStartWeb.Pages.Customerpages
 		public int TotalPageCount { get; private set; }
 		public string SortCol { get; set; }
 		public string SortOrder { get; set; }
-		public List<Customer> Customers { get; set; }
+		public List<CustomerViewModel> Customers { get; set; }
 
 		public CustomersModel(ApplicationDbContext context)
 		{
 			_context = context;
 		}
 
-		public class Customer
+		public class CustomerViewModel
 		{
 			public string Givenname { get; set; }
 			public string Surname { get; set; }
@@ -40,18 +40,19 @@ namespace BankStartWeb.Pages.Customerpages
 
 			if(!string.IsNullOrEmpty(SearchWord))
 			cust = cust.Where(c => c.Givenname.Contains(SearchWord)
-							||  c.Surname.Contains(SearchWord));
+							||  c.Surname.Contains(SearchWord)
+							|| c.City.Contains(SearchWord));
 
 
 			cust = cust.OrderBy(col, order == "asc" ? ExtensionMethods.QuerySortOrder.Asc :
 				ExtensionMethods.QuerySortOrder.Desc);
 
 
-			var pageResult = cust.GetPaged(pageno, 20);
+			var pageResult = cust.GetPaged(pageno, 50);
 			TotalPageCount = pageResult.PageCount;
 
 			Customers = pageResult.Results.Select(s =>
-			new Customer
+			new CustomerViewModel
 			{
 				Givenname = s.Givenname,
 				Surname = s.Surname,
