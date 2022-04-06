@@ -19,11 +19,17 @@ namespace BankStartWeb.Pages
         public int customerId { get; set; }
 		public int NumOfAccounts { get; set; }
         public int NumOfCustomers { get; set; }
+		public decimal TotalAmount { get; set; }
 		public void OnGet()
         {
             NumOfAccounts = _context.Accounts.Count();
             NumOfCustomers = _context.Customers.Count();
 
+            foreach(var account in _context.Accounts)
+			{
+                TotalAmount = TotalAmount + account.Balance;
+
+			}
 		}
     }
 }

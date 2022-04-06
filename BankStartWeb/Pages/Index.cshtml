@@ -4,18 +4,100 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+ <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 p-r-0 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>Hello, <span>Welcome Here</span></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /# column -->
+                    <div class="col-lg-4 p-l-0 title-margin-left">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">Home</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /# column -->
+                </div>
+                <!-- /# row -->
+                <section id="main-content">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="card">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="ti-money color-success border-success"></i>
+                                    </div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Antal kunder</div>
+                                        <div class="stat-digit">@Model.NumOfCustomers</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="card">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
+                                    </div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Antal konton</div>
+                                        <div class="stat-digit">@Model.NumOfAccounts</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="card">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
+                                    </div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Total summa</div>
+                                        <div class="stat-digit">@Model.TotalAmount</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="card">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Kundnummer</div>
+                                        <div class="stat-text">
+                                            <form asp-page="/CustomerPages/Customer" method="get">
+                                            <input asp-for=@Model.customerId ></input>
+                                             <input type="submit" value="Sök"></input>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="card">
+                                <div class="card-title">
+                                    <h4>Fee Collections and Expenses</h4>
 
+                                </div>
+                                <div class="card-body">
+                                    <div class="ct-bar-chart m-t-30"></div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
 <form asp-page="/CustomerPages/Customer" method="get">
     <input asp-for=@Model.customerId ></input>
     <input type="submit" value="Sök efter kund"></input>
 </form>
 
-
-
-Antal konton:  @Model.NumOfAccounts
-
-Antal kunder:  @Model.NumOfCustomers
