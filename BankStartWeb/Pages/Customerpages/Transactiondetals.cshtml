@@ -4,6 +4,19 @@
 }
 Customer; @Model.FullName
 AccountId: @Model.AccountId
+
+            <form method="post">
+            <input asp-for=@Model.DepositAmount >Enter deposit</input>
+            <input type="submit" value="Sätt in"></input>
+            </form>
+@*            <form method="post">
+            <input asp-for=@Model.WithdrawelAmount >Belopp att ta ut</input>
+            <input type="submit" value="Ta ut"></input>
+            </form>*@
+
+New Balance = @Model.NewBalance
+
+
 <table>
     <tr>
         <th>Transaction date</th>

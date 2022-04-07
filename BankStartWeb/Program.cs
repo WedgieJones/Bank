@@ -1,4 +1,5 @@
 using BankStartWeb.Data;
+using BankStartWeb.Transactions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<DataInitializer>();
+builder.Services.AddTransient<TransactionServices>();
+
 var app = builder.Build();
 
 
