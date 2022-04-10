@@ -2,35 +2,52 @@
 @model BankStartWeb.Pages.Customerpages.TransactiondetalsModel
 @{
 }
-Customer; @Model.FullName
+Customer: @Model.FullName
 AccountId: @Model.AccountId
 
             <form method="post">
-            <input asp-for=@Model.DepositAmount >Enter deposit</input>
-            <input type="submit" value="Sätt in"></input>
+            <div class="form-group">
+                <input asp-for="DepositAmount">Enter deposit</input>
+                <input type="submit" value="Sätt in"></input>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type">Debit</label>
+                <input class="form-control" asp-for="Type">
+                <span asp-validation-for="Type" class="field-validation-error"></span>
+            </div>
+               <div class="form-group">
+                <label asp-for="Operation">Operation/Vad?</label>
+                <input class="form-control" asp-for="Operation">
+                <span asp-validation-for="Operation" class="field-validation-error"></span>
+            </div>
+
             </form>
 @*            <form method="post">
-            <input asp-for=@Model.WithdrawelAmount >Belopp att ta ut</input>
+            <input asp-for=@Model.WithdrawalAmount >Belopp att ta ut</input>
             <input type="submit" value="Ta ut"></input>
             </form>*@
 
-New Balance = @Model.NewBalance
+@*New Balance = @Model.NewBalance*@
 
 
 <table>
     <tr>
+        <th>Id</th>
         <th>Transaction date</th>
-        <th>Handling</th>
+        <th>Operation</th>
         <th>Debet/kredit</th>
         <th>Belopp</th>
+        <th>New Balance</th>
     </tr>
        @foreach(var transaction in Model.Transactions)
        {
         <tr>
+           <td>@transaction.Id</td>
            <td>@transaction.Date</td>
            <td>@transaction.Operation</td>
-           <td>@transaction.Type</td>
+           <td>@transaction.TransactionType</td>
            <td>@transaction.Amount</td>
+           <td>@transaction.NewBalance</td>
        </tr>
        }
        AccountBalance : @Model.Balance
