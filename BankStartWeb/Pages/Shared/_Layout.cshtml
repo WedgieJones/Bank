@@ -140,8 +140,7 @@
                     <li><a class="sidebar-sub-toggle"><i class="ti-target"></i> Pages <span
                                 class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
-                            <li><a href="page-login.html">Login</a></li>
-                            <li><a href="page-register.html">Register</a></li>
+                            <li><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
                             <li><a href="page-reset-password.html">Forgot password</a></li>
                         </ul>
                     </li>
@@ -314,7 +313,7 @@
         @*Start Login/Logout upper right.*@
 
                         <div class="dropdown dib">
-                            <div class="header-icon" data-toggle="dropdown">
+                            <div class="header-icon" data-toggle="dropdown"> 
                                 <span class="user-avatar">John
                                     <i class="ti-angle-down f-s-10"></i>
                                 </span>

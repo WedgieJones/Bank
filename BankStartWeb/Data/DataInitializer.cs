@@ -24,6 +24,7 @@ public class DataInitializer
         SeedCustomers();
     }
 
+    
     private void SeedCustomers()
     {
         while (_dbContext.Customers.Count() < 500)
@@ -33,6 +34,8 @@ public class DataInitializer
             _dbContext.Customers.Add(a);
             _dbContext.SaveChanges();
         }
+
+
 
     }
 
