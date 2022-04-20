@@ -29,7 +29,7 @@ namespace BankStartWeb.Transactions
 				trans.Type = type;
 				trans.Operation = operation;
 				trans.Date = DateTime.Now;
-				//trans.
+				//trans. 
 				//_context.Transactions.Add(trans);
 				//_context.SaveChanges();
 				return enterDeposit.Balance;
