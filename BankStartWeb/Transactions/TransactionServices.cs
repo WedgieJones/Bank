@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BankStartWeb.Transactions
 {
-	public class TransactionServices
+	public class TransactionServices : ITransactionServices
 	{
 		private readonly ApplicationDbContext _context;
 
@@ -12,42 +12,56 @@ namespace BankStartWeb.Transactions
 			_context = context;
 		}
 
-		public decimal Deposit(int accountId, string type, string operation, decimal depositAmount)
+		public ITransactionServices.ErrorCode Deposit(int accountId, string operation, decimal amount)
 		{
-			//AcountId
-			//Type of transaction
-			//Amount
-			//Operation
-			//Date (DateTime ) Datetime.now?
-
-			var enterDeposit = _context.Accounts.First(a => a.Id == accountId);
-			if (depositAmount > 0)
+			if (amount < 0)
 			{
-				var trans = new Transaction();
+				return ITransactionServices.ErrorCode.AmountIsNegativ;
+			}
 
-				trans.Amount = depositAmount;
-				trans.Type = type;
+			var account = _context.Accounts.First(a => a.Id == accountId);
+			account.Balance += amount;
+
+			var trans = new Transaction();
+			{
+				trans.Amount = amount;
+				trans.Type = "Debit";
 				trans.Operation = operation;
 				trans.Date = DateTime.Now;
-				//trans. 
-				//_context.Transactions.Add(trans);
-				//_context.SaveChanges();
-				return enterDeposit.Balance;
+				trans.NewBalance = account.Balance;
 			}
-			else
-			{
-				//Returnera en false bool?
-			}
-			return enterDeposit.Balance;
+			account.Transactions.Add(trans);
+			_context.SaveChanges();
+			return ITransactionServices.ErrorCode.Ok;
 		}
 
-		public decimal Withdrawal(int accountId, decimal withdrawalAmount)
+		public ITransactionServices.ErrorCode Withdraw(int accountId, string operation, decimal amount)
 		{
-			var enterWithdrawal = _context.Accounts.First(a=>a.Id == accountId);
-			enterWithdrawal.Balance = enterWithdrawal.Balance - withdrawalAmount;
+
+			if (amount < 0)
+			{
+				return ITransactionServices.ErrorCode.AmountIsNegativ;
+			}
+			var account = _context.Accounts.First(a => a.Id == accountId);
+			if(account.Balance < amount)
+			{
+				return ITransactionServices.ErrorCode.BalanceTooLow;
+			}
+
+			account.Balance -= amount;
+			var transaction = new Transaction();
+			{
+				transaction.Amount = amount;
+				transaction.Type = "Credit";
+				transaction.Operation = operation;
+				transaction.Date = DateTime.Now;
+				transaction.NewBalance = account.Balance;
+			}
+			account.Transactions.Add(transaction);
 			_context.SaveChanges();
-			return enterWithdrawal.Balance;
+			return ITransactionServices.ErrorCode.Ok;
 		}
+
 
 	}
 }

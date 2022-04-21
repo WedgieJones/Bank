@@ -5,10 +5,10 @@
 Customer: @Model.FullName
 AccountId: @Model.AccountId
 
-            <form method="post">
+
+          <form method="post">
             <div class="form-group">
                 <input asp-for="DepositAmount">Enter deposit</input>
-                <input type="submit" value="Sätt in"></input>
             </div>
             <div class="form-group">
                 <label asp-for="Type">Debit</label>
@@ -20,12 +20,13 @@ AccountId: @Model.AccountId
                 <input class="form-control" asp-for="Operation">
                 <span asp-validation-for="Operation" class="field-validation-error"></span>
             </div>
+               <input type="submit" value="Sätt in"></input>
 
             </form>
 @*            <form method="post">
             <input asp-for=@Model.WithdrawalAmount >Belopp att ta ut</input>
             <input type="submit" value="Ta ut"></input>
-            </form>*@
+            </form>
 
 @*New Balance = @Model.NewBalance*@
 

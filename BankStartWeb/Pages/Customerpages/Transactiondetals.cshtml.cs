@@ -11,12 +11,12 @@ namespace BankStartWeb.Pages.Customerpages
     public class TransactiondetalsModel : PageModel
     {
 		private readonly ApplicationDbContext _context;
-		private readonly TransactionServices _transactions;
+		private readonly TransactionServices _transactionservices;
 
 		public TransactiondetalsModel(ApplicationDbContext context, TransactionServices transactions)
 		{
 			_context = context;
-			_transactions = transactions;
+			_transactionservices = transactions;
 		}
         public int Id { get; set; }
         public string AccountType { get; set; }
@@ -60,7 +60,6 @@ namespace BankStartWeb.Pages.Customerpages
             AccountType = a.AccountType;
             accountId = a.Id;
 
-
             Transactions = a.Transactions.Select(t => new TransactionViewModel
             {
                 Id = t.Id,
@@ -75,8 +74,8 @@ namespace BankStartWeb.Pages.Customerpages
         public void OnPost(int accountId, string type, string operation, decimal depositamount)
 		{
 
-            var deposit = _transactions.Deposit(accountId, type, operation, depositamount);
-            var withDrawal = _transactions.Withdrawal(accountId, depositamount);
+            var deposit = _transactionservices.Deposit(accountId, operation, depositamount);
+            //var withDrawal = _transactions.Withdrawal(accountId, depositamount);
 
             
 
@@ -95,7 +94,7 @@ namespace BankStartWeb.Pages.Customerpages
             accountId = a.Id;
 
 
-            Transactions = a.Transactions.Select(t => new TransactionViewModel
+            Transactions = t.Select(t => new TransactionViewModel
             {
                 Id = t.Id,
                 NewBalance = t.NewBalance,
