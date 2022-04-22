@@ -62,6 +62,42 @@ namespace BankStartWeb.Transactions
 			return ITransactionServices.ErrorCode.Ok;
 		}
 
+		public ITransactionServices.ErrorCode Transfer(int accountId, int toAccount, decimal amount)
+		{
+			if (amount < 0)
+			{
+				return ITransactionServices.ErrorCode.AmountIsNegativ;
+			}
+			var account = _context.Accounts.First(a => a.Id == accountId);
+			if (account.Balance < amount)
+			{
+				return ITransactionServices.ErrorCode.BalanceTooLow;
+			}
 
+			account.Balance -= amount;
+			var transaction = new Transaction();
+			{
+				transaction.Amount = amount;
+				transaction.Type = "Credit";
+				transaction.Operation = "Transfer";
+				transaction.Date = DateTime.Now;
+				transaction.NewBalance = account.Balance;
+			}
+			account.Transactions.Add(transaction);
+
+			var debitAccount = _context.Accounts.First(acc => acc.Id == toAccount);
+			var debitTransaction = new Transaction();
+			{
+				debitTransaction.Amount = amount;
+				debitTransaction.Type = "Debit";
+				debitTransaction.Operation = "Transfer";
+				debitTransaction.Date = DateTime.Now;
+				debitTransaction.NewBalance = debitAccount.Balance;
+			}
+			debitAccount.Transactions.Add(debitTransaction);
+			_context.SaveChanges();
+
+			return ITransactionServices.ErrorCode.Ok;
+		}
 	}
 }
