@@ -1,11 +1,14 @@
 using BankStartWeb.Data;
 using BankStartWeb.Infrastructure.Paging;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BankStartWeb.Pages.Customerpages
 {
-    public class CustomersModel : PageModel
+	[Authorize(Roles = "Cashier")] 
+	
+	public class CustomersModel : PageModel
     {
 		private readonly ApplicationDbContext _context;
 		[BindProperty (SupportsGet = true)]

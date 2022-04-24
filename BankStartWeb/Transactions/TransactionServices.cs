@@ -16,20 +16,21 @@ namespace BankStartWeb.Transactions
 		{
 			if (amount < 0)
 			{
-				return ITransactionServices.ErrorCode.AmountIsNegativ;
+				return ITransactionServices.ErrorCode.AmountIsNegative;
 			}
 
 			var account = _context.Accounts.First(a => a.Id == accountId);
 			account.Balance += amount;
 
-			var trans = new Transaction();
+			var trans = new Transaction()
 			{
-				trans.Amount = amount;
-				trans.Type = "Debit";
-				trans.Operation = operation;
-				trans.Date = DateTime.Now;
-				trans.NewBalance = account.Balance;
-			}
+				Amount = amount,
+				Type = "Debit",
+				Operation = operation,
+				Date = DateTime.Now,
+				NewBalance = account.Balance,
+			};
+
 			account.Transactions.Add(trans);
 			_context.SaveChanges();
 			return ITransactionServices.ErrorCode.Ok;
@@ -40,7 +41,7 @@ namespace BankStartWeb.Transactions
 
 			if (amount < 0)
 			{
-				return ITransactionServices.ErrorCode.AmountIsNegativ;
+				return ITransactionServices.ErrorCode.AmountIsNegative;
 			}
 			var account = _context.Accounts.First(a => a.Id == accountId);
 			if(account.Balance < amount)
@@ -49,14 +50,14 @@ namespace BankStartWeb.Transactions
 			}
 
 			account.Balance -= amount;
-			var transaction = new Transaction();
+			var transaction = new Transaction()
 			{
-				transaction.Amount = amount;
-				transaction.Type = "Credit";
-				transaction.Operation = operation;
-				transaction.Date = DateTime.Now;
-				transaction.NewBalance = account.Balance;
-			}
+				Amount = amount,
+				Type = "Credit",
+				Operation = operation,
+				Date = DateTime.Now,
+				NewBalance = account.Balance,
+			};
 			account.Transactions.Add(transaction);
 			_context.SaveChanges();
 			return ITransactionServices.ErrorCode.Ok;
@@ -66,7 +67,7 @@ namespace BankStartWeb.Transactions
 		{
 			if (amount < 0)
 			{
-				return ITransactionServices.ErrorCode.AmountIsNegativ;
+				return ITransactionServices.ErrorCode.AmountIsNegative;
 			}
 			var account = _context.Accounts.First(a => a.Id == accountId);
 			if (account.Balance < amount)
@@ -75,25 +76,25 @@ namespace BankStartWeb.Transactions
 			}
 
 			account.Balance -= amount;
-			var transaction = new Transaction();
+			var transaction = new Transaction()
 			{
-				transaction.Amount = amount;
-				transaction.Type = "Credit";
-				transaction.Operation = "Transfer";
-				transaction.Date = DateTime.Now;
-				transaction.NewBalance = account.Balance;
-			}
+				Amount = amount,
+				Type = "Credit",
+				Operation = "Transfer",
+				Date = DateTime.Now,
+				NewBalance = account.Balance,
+			};
 			account.Transactions.Add(transaction);
 
 			var debitAccount = _context.Accounts.First(acc => acc.Id == toAccount);
-			var debitTransaction = new Transaction();
+			var debitTransaction = new Transaction()
 			{
-				debitTransaction.Amount = amount;
-				debitTransaction.Type = "Debit";
-				debitTransaction.Operation = "Transfer";
-				debitTransaction.Date = DateTime.Now;
-				debitTransaction.NewBalance = debitAccount.Balance;
-			}
+				Amount = amount,
+				Type = "Debit",
+				Operation = "Transfer",
+				Date = DateTime.Now,
+				NewBalance = debitAccount.Balance,
+			};
 			debitAccount.Transactions.Add(debitTransaction);
 			_context.SaveChanges();
 

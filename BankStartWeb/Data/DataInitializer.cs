@@ -21,10 +21,53 @@ public class DataInitializer
     public void SeedData()
     {
         _dbContext.Database.Migrate();
+        SeedRoles();
+        SeedUsers();
         SeedCustomers();
     }
 
-    
+    private void SeedUsers()
+    {
+	    CreateUserIfNotExists("fredrik@banken.se", "Hejsan123456#",
+		    new[] { "Admin" });
+	    CreateUserIfNotExists("fredrik@test.se", "Qwerty1!",
+		    new[] { "Cashier" });
+
+		CreateUserIfNotExists("stefan.holmberg@systementor.se", "Hejsan123#",
+			new[] { "Admin" });
+
+		CreateUserIfNotExists("stefan.holmberg@customer.banken.se", "Hejsan123#",
+			new[] { "Cashier" });
+	}
+    private void CreateUserIfNotExists(string email, string password, string[] roles)
+    {
+	    if (_userManager.FindByEmailAsync(email).Result != null) return;
+
+	    var user = new IdentityUser
+	    {
+		    UserName = email,
+		    Email = email,
+		    EmailConfirmed = true
+	    };
+	    _userManager.CreateAsync(user, password).Wait();
+	    _userManager.AddToRolesAsync(user, roles).Wait();
+
+    }
+    private void SeedRoles()
+    {
+	    CreateRoleIfNotExists("Admin");
+	    CreateRoleIfNotExists("Cashier");
+    }
+
+    private void CreateRoleIfNotExists(string rolename)
+    {
+	    if (_dbContext.Roles.Any(e => e.Name == rolename))
+		    return;
+	    _dbContext.Roles.Add(new IdentityRole { Name = rolename, NormalizedName = rolename });
+	    _dbContext.SaveChanges();
+    }
+
+
     private void SeedCustomers()
     {
         while (_dbContext.Customers.Count() < 500)
@@ -34,9 +77,6 @@ public class DataInitializer
             _dbContext.Customers.Add(a);
             _dbContext.SaveChanges();
         }
-
-
-
     }
 
     private static Random random = new Random();
@@ -110,13 +150,8 @@ public class DataInitializer
         {
             person.Accounts.Add(GenerateAccount());
         }
-
-        
-
-
         return person;
     }
-
 
     private Account GenerateAccount()
     {

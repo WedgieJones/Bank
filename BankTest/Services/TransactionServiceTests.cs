@@ -26,10 +26,10 @@ namespace BankTest.Services
 
 		}
 		[TestMethod]
-		public void Deposit_negative_amount_should_respond_AmountIsNegativ()
+		public void Deposit_negative_amount_should_respond_AmountIsNegative()
 		{
 			var result = _sut.Deposit(2, "", -2);
-			Assert.AreEqual(ITransactionServices.ErrorCode.AmountIsNegativ, result);
+			Assert.AreEqual(ITransactionServices.ErrorCode.AmountIsNegative, result);
 		}
 		[TestMethod]
 		public void Deposit_positive_amount_should_respond_ok()
@@ -57,7 +57,7 @@ namespace BankTest.Services
 		public void Transfer_negative_amount_should_respond_AmountIsNegative()
 		{
 			var result = _sut.Transfer(1, 2, -2);
-			Assert.AreEqual(ITransactionServices.ErrorCode.AmountIsNegativ, result);
+			Assert.AreEqual(ITransactionServices.ErrorCode.AmountIsNegative, result);
 		}
 		[TestMethod]
 		public void Transfer_amount_higher_than_Balance_should_respond_BalanceTooLow()

@@ -6,7 +6,7 @@
 		{
 			Ok,
 			BalanceTooLow,
-			AmountIsNegativ,
+			AmountIsNegative,
 			
 		}
 		ErrorCode Deposit(int accountId, string operation, decimal amount);

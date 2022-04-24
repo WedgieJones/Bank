@@ -5,9 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using BankStartWeb.Transactions;
 using System.ComponentModel.DataAnnotations;
 using DataAnnotationsExtensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BankStartWeb.Pages.Customerpages
 {
+	[Authorize(Roles = "Cashier")]
     public class TransactiondetalsModel : PageModel
     {
 		private readonly ApplicationDbContext _context;
