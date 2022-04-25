@@ -3,10 +3,10 @@
 @{
 }
 Customer: @Model.FullName
-AccountId: @Model.AccountId
+AccountId: @Model.Id
 
 
-          <form method="post">
+         @* <form method="post">
             <div class="form-group">
                 <input asp-for="DepositAmount">Enter deposit</input>
             </div>
@@ -22,7 +22,7 @@ AccountId: @Model.AccountId
             </div>
                <input type="submit" value="Sätt in"></input>
 
-            </form>
+            </form>*@
 @*            <form method="post">
             <input asp-for=@Model.WithdrawalAmount >Belopp att ta ut</input>
             <input type="submit" value="Ta ut"></input>
@@ -30,26 +30,106 @@ AccountId: @Model.AccountId
 
 @*New Balance = @Model.NewBalance*@
 
-
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Transaction date</th>
-        <th>Operation</th>
-        <th>Debet/kredit</th>
-        <th>Belopp</th>
-        <th>New Balance</th>
-    </tr>
-       @foreach(var transaction in Model.Transactions)
-       {
+@*<div>
+    <table class="table" id="posts-table">
         <tr>
-           <td>@transaction.Id</td>
-           <td>@transaction.Date</td>
-           <td>@transaction.Operation</td>
-           <td>@transaction.TransactionType</td>
-           <td>@transaction.Amount</td>
-           <td>@transaction.NewBalance</td>
-       </tr>
-       }
-       AccountBalance : @Model.Balance
-</table>
+            <th>Id</th>
+            <th>Transaction date</th>
+            <th>Operation</th>
+            <th>Debet/kredit</th>
+            <th>Belopp</th>
+            <th>New Balance</th>
+        </tr>
+        <tbody>
+        </tbody>
+       @* @foreach(var transaction in Model.Transactions)
+        {
+            <tr>
+                <td>@transaction.Id</td>
+                <td>@transaction.Date</td>
+                <td>@transaction.Operation</td>
+                <td>@transaction.TransactionType</td>
+                <td>@transaction.Amount</td>
+                <td>@transaction.NewBalance</td>
+            </tr>
+        }
+        AccountBalance : @Model.Balance
+    </table>
+    <a class="btn" href="javascript:fetchMore();">Visa fler</a>
+</div>*@
+
+<div class="card">
+    <div class="card-header">
+        
+    </div>
+    <div class="card-body">
+        <table class="table" id="posts-table">
+            <tr>
+                <th>Id</th>
+                <th>Transaction</th>
+                <th>Operation</th>
+                <th>Deb</th>
+                <th>Belopp</th>
+                <th>NewBalance</th>
+            </tr>
+            <tbody>
+            </tbody>
+        </table>
+        <a class="btn" href="javascript:fetchMore();">See more</a>
+        
+
+    </div>
+</div>
+
+
+
+
+
+@section Scripts
+{
+    <script>
+        pageNo = 1;
+        function fetchMore() {
+            fetch("Transactiondetals?handler=FetchMore&pageNo=" + pageNo + "&accountId=@Model.Id")
+                .then((response) => response.json())
+                .then((json) => {
+                        pageNo = pageNo + 1;
+                        json.items.forEach(tableElements);
+                    }
+                );
+        }
+
+/*
+ *
+         lastPage = 0;
+        function fetchMore() {
+            fetch("View?handler=FetchMore&lastPage=" + lastPage + "&personId=@Model.Id")
+                .then((response) => response.json())
+                .then((json) => {
+                        lastPage = lastPage + 1;
+                        json.items.forEach(tableElements);
+                    }
+                );
+        }
+
+ *
+ */ 
+
+        function tableElements(element) {
+            document.querySelector('#posts-table tbody').innerHTML +=
+                `<tr>
+        <td>${element.id}</td>
+        <td>${element.date}</td>
+        <td>${element.operation}</td>
+        <td>${element.transactionType}</td>
+        <td>${element.amount}</td>
+        <td>${element.newBalance}</td>
+    </tr>`;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            fetchMore();
+        });
+     
+    </script>    
+}

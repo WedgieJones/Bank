@@ -63,8 +63,8 @@
                                                         Personnummer
                                                         <a asp-route-col="nationalid" asp-route-order="desc"  asp-route-searchWord="@Model.SearchWord" asp-page="/Customerpages/Customers"><i class='bx bx-sort-down'></i></a>
                                                     </th>
+                                                    <th>Stad</th>
                                                     <th>Landskod</th>
-                                                    <th>Pronoun</th>
                                                     <th>Länk</th>
                                                 </tr>
                                             </thead>
@@ -76,7 +76,7 @@
                                                        <td>@customer.Givenname</td>
                                                        <td>@customer.Surname</td>
                                                        <td>@customer.NationalId</td>
-                                                       <td>@customer.CountryCode</td>
+                                                       <td>@customer.City</td>
                                                        <td>@customer.CountryCode</td>
                                                       <td><a class="ctabutton" asp-page="/CustomerPages/Customer" asp-route-customerId="@customer.Id">View</a> </td>
                                                    </tr>
@@ -107,7 +107,7 @@
                                                     <th>Efternamn</th>
                                                     <th>Personnummer</th>
                                                     <th>Landskod</th>
-                                                    <th>Landskod</th>
+                                                    <th>Stad</th>
                                                     <th>Länk</th>
                                                 </tr>
                                             </tfoot>

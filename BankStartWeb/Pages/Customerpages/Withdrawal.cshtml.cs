@@ -5,13 +5,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace BankStartWeb.Pages.Customerpages
 {
 	[Authorize(Roles = "Cashier")]
-    public class DepositModel : PageModel
+
+    public class WithdrawalModel : PageModel
     {
         public void OnGet()
         {
-
-            //transactionsservices  = >Kall på Deposit 
-            //Send med variabler. Se TransactionsdDetails.
         }
     }
 }

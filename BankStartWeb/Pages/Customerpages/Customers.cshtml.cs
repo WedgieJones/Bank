@@ -30,6 +30,7 @@ namespace BankStartWeb.Pages.Customerpages
 			public string Surname { get; set; }
 			public string NationalId { get; set; }
 			public string CountryCode { get; set; }
+			public string City { get; set; }
 			public int Id { get; set; } 
 
 		}
@@ -52,7 +53,7 @@ namespace BankStartWeb.Pages.Customerpages
 				ExtensionMethods.QuerySortOrder.Desc);
 
 
-			var pageResult = cust.GetPaged(pageno, 50);
+			var pageResult = cust.GetPaged(pageno, 600);
 			TotalPageCount = pageResult.PageCount;
 
 			Customers = pageResult.Results.Select(s =>
@@ -62,6 +63,7 @@ namespace BankStartWeb.Pages.Customerpages
 				Surname = s.Surname,
 				NationalId = s.NationalId,
 				CountryCode = s.CountryCode,
+				City = s.City,
 				Id = s.Id
 			}).ToList();
 		}
