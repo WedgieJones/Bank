@@ -41,12 +41,7 @@ namespace BankStartWeb.Pages.Customerpages
 			var customer = _context.Customers
 		        .First(cust => cust.Id == customerId);
 	        Name = customer.Givenname + " " + customer.Surname;
-			
-			
-			//var account = _context.Accounts.First(a=>a.Id == accountId);
-			//Balance = account.Balance;
-			//AccountType = account.AccountType;
-
+		
 		}
        public void SetAllAccounts()
        {
@@ -61,15 +56,18 @@ namespace BankStartWeb.Pages.Customerpages
 	        }).ToList();
         }
 
-        public IActionResult OnPost(int customerId)
+        public IActionResult OnPost()
         {
+	        int accountId = AccountId;
+			decimal amount = Amount;
+			string operation = Operation;
 	        
 			if (ModelState.IsValid)
 			{
-				_services.Deposit(AccountId, Operation, Amount);
-		        return RedirectToPage("Customer");
+				_services.Deposit(accountId, operation, amount);
+		        return RedirectToPage("Customer", CustomerId);
 	        }
-			CustomerId = customerId;
+			
 			SetAllAccounts();
 			return Page();
         }

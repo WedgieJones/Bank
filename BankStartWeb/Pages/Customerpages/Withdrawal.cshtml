@@ -2,3 +2,41 @@
 @model BankStartWeb.Pages.Customerpages.WithdrawalModel
 @{
 }
+
+<section id="main-content">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>@Model.Name</h4>
+                                    
+                </div>
+                <div class="card-body">
+                    <div class="basic-form">
+                        <form method="post">
+                            <div class="form-group">
+                                <label asp-for="AccountId">Konto</label>
+                                <select class="form-control" asp-for="AccountId" asp-items="@Model.AllAccounts" >
+
+                                </select>
+                                <span asp-validation-for="AccountId" class="field-validation-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Operation">Information on insättning</label>
+                                <input class="form-control" asp-for="Operation">
+                                <span asp-validation-for="Operation" class="field-validation-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Amount">Belopp</label>
+                                <input class="form-control" asp-for="Amount">
+                                <span asp-validation-for="Amount" class="field-validation-error"></span>
+                            </div>
+                            <button type="submit" class="btn">Save</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
