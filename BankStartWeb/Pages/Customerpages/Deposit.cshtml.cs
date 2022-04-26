@@ -28,7 +28,7 @@ namespace BankStartWeb.Pages.Customerpages
 		public decimal Amount { get; set; }
 		[BindProperty]
 		public string Operation { get; set; }
-
+		[BindProperty]
 		public int CustomerId { get; set; }
 		public List<Account> Accounts { get; set; }
 
@@ -58,6 +58,7 @@ namespace BankStartWeb.Pages.Customerpages
 
         public IActionResult OnPost()
         {
+			int customerId = CustomerId;
 	        int accountId = AccountId;
 			decimal amount = Amount;
 			string operation = Operation;
@@ -65,7 +66,7 @@ namespace BankStartWeb.Pages.Customerpages
 			if (ModelState.IsValid)
 			{
 				_services.Deposit(accountId, operation, amount);
-		        return RedirectToPage("Customer", CustomerId);
+		        return RedirectToPage("Customer", new {customerId}) ;
 	        }
 			
 			SetAllAccounts();
