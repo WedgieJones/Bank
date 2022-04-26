@@ -14,12 +14,10 @@ namespace BankStartWeb.Pages.Customerpages
     public class TransactiondetalsModel : PageModel
     {
 		private readonly ApplicationDbContext _context;
-		private readonly TransactionServices _transactionservices;
 
-		public TransactiondetalsModel(ApplicationDbContext context, TransactionServices transactions)
+		public TransactiondetalsModel(ApplicationDbContext context)
 		{
 			_context = context;
-			_transactionservices = transactions;
 		}
         public int Id { get; set; }
         public string AccountType { get; set; }
@@ -74,7 +72,7 @@ namespace BankStartWeb.Pages.Customerpages
 	        var account = cust.Accounts.First(account => account.Id == accountId);
 	        var transactions = account.Transactions.OrderByDescending(t=> t.Date).AsQueryable();
 
-            var r = transactions.GetPaged(pageNo, 5);
+            var r = transactions.GetPaged(pageNo, 20);
 
 
 			var list = r.Results.Select(t => new TransactionViewModel

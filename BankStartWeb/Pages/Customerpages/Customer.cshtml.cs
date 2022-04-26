@@ -46,6 +46,8 @@ namespace BankStartWeb.Pages.Customerpages
 
         public void OnGet(int customerId)
         {
+            Id = customerId;
+
 			var customer = _context.Customers
                 .Include(a => a.Accounts)
                 .First(x => x.Id == customerId);

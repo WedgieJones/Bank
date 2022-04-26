@@ -2,35 +2,8 @@
 @model BankStartWeb.Pages.Customerpages.TransactiondetalsModel
 @{
 }
-Customer: @Model.FullName
-AccountId: @Model.Id
-
-
-         @* <form method="post">
-            <div class="form-group">
-                <input asp-for="DepositAmount">Enter deposit</input>
-            </div>
-            <div class="form-group">
-                <label asp-for="Type">Debit</label>
-                <input class="form-control" asp-for="Type">
-                <span asp-validation-for="Type" class="field-validation-error"></span>
-            </div>
-               <div class="form-group">
-                <label asp-for="Operation">Operation/Vad?</label>
-                <input class="form-control" asp-for="Operation">
-                <span asp-validation-for="Operation" class="field-validation-error"></span>
-            </div>
-               <input type="submit" value="Sätt in"></input>
-
-            </form>*@
-@*            <form method="post">
-            <input asp-for=@Model.WithdrawalAmount >Belopp att ta ut</input>
-            <input type="submit" value="Ta ut"></input>
-            </form>
-
-@*New Balance = @Model.NewBalance*@
-
-
+<div><h4>Transaktionsöversikt för kund: @Model.FullName</h4></div>
+<div><h4>Kontonummer: @Model.Id</h4></div>
 
 <div class="card">
     <div class="card-header">
@@ -49,7 +22,7 @@ AccountId: @Model.Id
             <tbody>
             </tbody>
         </table>
-        <a class="btn" href="javascript:fetchMore();">See more</a>
+        <a class="btn" href="javascript:fetchMore();">Visa 20 till</a>
         
 
     </div>
@@ -96,6 +69,7 @@ AccountId: @Model.Id
         <td>${element.transactionType}</td>
         <td>${element.amount}</td>
         <td>${element.newBalance}</td>
+        <td></td>
     </tr>`;
         }
 

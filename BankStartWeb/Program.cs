@@ -27,7 +27,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<DataInitializer>();
-builder.Services.AddTransient<TransactionServices>();
+builder.Services.AddTransient<ITransactionServices, TransactionServices>();
 
 var app = builder.Build();
 
