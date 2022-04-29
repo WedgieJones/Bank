@@ -2,3 +2,45 @@
 @model BankStartWeb.Pages.Customerpages.TransferModel
 @{
 }
+
+
+<section id="main-content">
+  <div class="row">
+      <div class="col-lg-6">
+          <div class="card">
+              <div class="card-title">
+                  <h4>@Model.Name</h4>
+                                    
+              </div>
+              <div class="card-body">
+                  <div class="basic-form">
+                      <form method="post">
+                          <div class="form-group">
+                              <label asp-for="FromAccountId">Konto</label>
+                              <select class="form-control" asp-for="FromAccountId" asp-items="@Model.AllAccounts" >
+                              </select>
+                              <span asp-validation-for="FromAccountId" class="field-validation-error"></span>
+                          </div>
+                          <div class="form-group">
+                              <label asp-for="ToAccountId">Konto</label>
+                              <select class="form-control" asp-for="ToAccountId" asp-items="@Model.AllAccounts" >
+                              </select>
+                              <span asp-validation-for="ToAccountId" class="field-validation-error"></span>
+                          </div>
+                          <div class="form-group">
+                          <div class="form-group">
+                              <label asp-for="Amount">Belopp</label>
+                              <input class="form-control" asp-for="Amount">
+                              <span asp-validation-for="Amount" class="field-validation-error"></span>
+                          </div>
+                          <input type="hidden" class="form-control" asp-for="CustomerId" value="@Model.CustomerId">
+
+                         <button type="submit" class="btn">Save</button>
+
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  </section>

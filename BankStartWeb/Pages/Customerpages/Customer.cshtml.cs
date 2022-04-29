@@ -5,8 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 namespace BankStartWeb.Pages.Customerpages
 {
-	[Authorize(Roles = "Cashier")]
-	
+    [Authorize]
     public class CustomerModel : PageModel
     {
 		private readonly ApplicationDbContext _context;
@@ -17,6 +16,7 @@ namespace BankStartWeb.Pages.Customerpages
 		}
 
         public int Id { get; set; }
+
         public string Givenname { get; set; }
         public string Surname { get; set; }
         public string Streetaddress { get; set; }

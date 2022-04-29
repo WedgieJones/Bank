@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BankStartWeb.Pages.Customerpages
 {
-	[Authorize(Roles = "Cashier")]
+	[Authorize]
     public class DepositModel : PageModel
     {
 		private readonly ITransactionServices _services;

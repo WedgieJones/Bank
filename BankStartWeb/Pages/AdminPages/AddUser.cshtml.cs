@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BankStartWeb.Pages.AdminPages
 {
-	[Authorize(Roles = "Admin")]
-
+    [Authorize(Roles="Admin")]
     public class AddUserModel : PageModel
     {
         public void OnGet()

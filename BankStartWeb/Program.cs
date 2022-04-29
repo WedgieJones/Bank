@@ -23,9 +23,17 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 	.AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+});
 
+builder.Services.AddRazorPages().AddRazorPagesOptions(options =>
+{
+    options.Conventions.AuthorizeFolder("/");
+    options.Conventions.AllowAnonymousToAreaPage("Identity","/Accounts/Login");
+});
 
-builder.Services.AddRazorPages();
 builder.Services.AddTransient<DataInitializer>();
 builder.Services.AddTransient<ITransactionServices, TransactionServices>();
 

@@ -11,6 +11,7 @@ public class Transaction
     [MaxLength(50)]
     public string Operation { get; set; }
     public DateTime Date { get; set; }
+    [Range(1, int.MaxValue)]
     public decimal Amount { get; set; }
     public decimal NewBalance { get; set; }
 }

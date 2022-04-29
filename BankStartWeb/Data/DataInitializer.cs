@@ -29,7 +29,7 @@ public class DataInitializer
     private void SeedUsers()
     {
 	    CreateUserIfNotExists("fredrik@banken.se", "Hejsan123456#",
-		    new[] { "Admin" });
+		    new[] { "Admin","Cashier" });
 	    CreateUserIfNotExists("fredrik@test.se", "Qwerty1!",
 		    new[] { "Cashier" });
 

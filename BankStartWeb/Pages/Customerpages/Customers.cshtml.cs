@@ -6,8 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BankStartWeb.Pages.Customerpages
 {
-	[Authorize(Roles = "Cashier")] 
-	
+	[Authorize]
 	public class CustomersModel : PageModel
     {
 		private readonly ApplicationDbContext _context;

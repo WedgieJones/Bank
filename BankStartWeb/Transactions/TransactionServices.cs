@@ -63,13 +63,13 @@ namespace BankStartWeb.Transactions
 			return ITransactionServices.ErrorCode.Ok;
 		}
 
-		public ITransactionServices.ErrorCode Transfer(int accountId, int toAccount, decimal amount)
+		public ITransactionServices.ErrorCode Transfer(int fromAccountId, int toAccount, decimal amount)
 		{
 			if (amount < 0)
 			{
 				return ITransactionServices.ErrorCode.AmountIsNegative;
 			}
-			var account = _context.Accounts.First(a => a.Id == accountId);
+			var account = _context.Accounts.First(a => a.Id == fromAccountId);
 			if (account.Balance < amount)
 			{
 				return ITransactionServices.ErrorCode.BalanceTooLow;
@@ -87,6 +87,7 @@ namespace BankStartWeb.Transactions
 			account.Transactions.Add(transaction);
 
 			var debitAccount = _context.Accounts.First(acc => acc.Id == toAccount);
+			debitAccount.Balance += amount;
 			var debitTransaction = new Transaction()
 			{
 				Amount = amount,

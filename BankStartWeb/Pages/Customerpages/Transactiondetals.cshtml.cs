@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BankStartWeb.Pages.Customerpages
 {
-	[Authorize(Roles = "Cashier")]
+    [Authorize]
     public class TransactiondetalsModel : PageModel
     {
 		private readonly ApplicationDbContext _context;
