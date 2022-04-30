@@ -38,9 +38,9 @@
                     <p>
                         <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
                     </p>
-                    <p>
+                    @*<p>
                         <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
+                    </p>*@
                     <p>
                         <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
                     </p>
@@ -49,7 +49,7 @@
         </section>
     </div>
     <div class="col-md-6 col-md-offset-2">
-        <section>
+      @*  <section>
             <h3>Use another service to log in.</h3>
             <hr />
             @{
@@ -76,7 +76,7 @@
                     </form>
                 }
             }
-        </section>
+        </section>*@
     </div>
 </div>
 

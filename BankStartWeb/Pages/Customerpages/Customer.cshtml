@@ -48,11 +48,10 @@ Birthday: @Model.Birthday
         <div class="row">
           <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
-              <div class="page-title">
-                <h1>Hej,
-                  <span>@User.Identity?.Name </span>   <!--Add user so active username is shown-->
+              @*<div class="page-title">
+                <h1>Kundinformation
                 </h1>
-              </div>
+              </div>*@
             </div>
           </div>
           <!-- /# column -->
@@ -70,86 +69,21 @@ Birthday: @Model.Birthday
           </div>
           <!-- /# column -->
         </div>
-        <!-- /# row -->
-        @*<section id="main-content">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="card">
-                <div class="card-body">
-                  <div class="user-profile">
-                    <div class="row">
-
-                      <div class="col-lg-0">
-                       <div class="col-lg-6">
-                        <div class="user-profile-name">@Model.Givenname @Model.Surname</div>
-                        <div class="user-Location">
-                          <i class="ti-location-pin"></i> @Model.City, @Model.Country</div>
-                        <div class="user-job-title">Product Designer</div>
-                       
-                        @*  <div class="ratings">
-                                  <h4>Ratings</h4>
-                                <div class="rating-star">    <!--Use as credit rating? --!>
-                                <span>8.9</span>
-                                <i class="ti-star color-primary"></i>
-                                <i class="ti-star color-primary"></i>
-                                <i class="ti-star color-primary"></i>
-                                <i class="ti-star color-primary"></i>
-                                <i class="ti-star"></i>
-                          </div> 
-                        </div>
-
-                        <div class="user-send-message">
-                          <button class="btn btn-primary btn-addon" type="button">
-                            <i class="ti-email"></i>Send Message</button>    <!--Add model.email q-->
-                        </div>
-                        <div class="custom-tab user-profile-tab">
-                          <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active">
-                              <a href="#1" aria-controls="1" role="tab" data-toggle="tab">Kundinformation</a>
-                            </li>
-                          </ul>
-                          <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="1">
-                              <div class="contact-information">
-                                <h4>Kontakt information</h4>
-                              
-                              </div>
-                              <div class="basic-information">
-                                <h4>Basic information</h4>
-                                <div class="birthday-content">
-                                  <span class="contact-title">Födelsesdag:</span>
-                                  <span class="birth-date">@Model.Birthday.Date.ToString("yyyy-MM-dd") </span>
-                                </div>
-                                <div class="gender-content">
-                                  <span class="contact-title">Gender:</span>
-                                  <span class="gender">Male</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div> <!--Slutt kundinfo-->
-
-                        </div>
-                      </div>
-
-
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-            *@
-          <!-- /# row -->
+        
           <div class="row">
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card">
                         <div class="card-title">
-                            <h4>Kundeinformation </h4>
-
+                            <h3>Kundinformation </h3>
                         </div>
-
+                           <div class="user-profile-name">@Model.Givenname @Model.Surname</div>
+                        <div class="user-Location">
+                          <i class="ti-location-pin"></i> @Model.City, @Model.Country</div>
+                        <div class="user-send-message">
+                          <button class="btn btn-primary btn-addon" type="button">
+                            <i class="ti-email"></i>Send Message</button>    <!--Add model.email q-->
+                        </div>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="1">
                                 <div class="contact-information">
@@ -183,10 +117,6 @@ Birthday: @Model.Birthday
                                         <span class="contact-title">Epost:</span>
                                         <span class="contact-email">@Model.EmailAddress</span>
                                     </div>
-
-                                </div>
-                                <div class="basic-information">
-                                    <h4>Basic information</h4>
                                     <div class="birthday-content">
                                         <span class="contact-title">Födelsesdag:</span>
                                         <span class="birth-date">@Model.Birthday.Date.ToString("yyyy-MM-dd") </span>
@@ -195,7 +125,8 @@ Birthday: @Model.Birthday
                                         <span class="contact-title">Gender:</span>
                                         <span class="gender">Male</span>
                                     </div>
-                                </div>
+                                 </div>
+                                
                             </div>
                         </div> <!--Slutt kundinfo-->
                        
@@ -248,7 +179,7 @@ Birthday: @Model.Birthday
                   <div class="button-list"> 
                       <a type="button" class="btn btn-primary btn-lg m-b-10" asp-page="/Customerpages/Deposit" asp-route-customerId="@Model.Id">Insättning</a>
                       <a type="button" class="btn btn-primary btn-lg m-b-10" asp-page="/Customerpages/Withdrawal" asp-route-customerId="@Model.Id">Uttag</a>
-                      <a type="button" class="btn btn-primary btn-lg m-b-10" asp-page="/Customerpages/Transfer" asp-route-customerId="@Model.Id">Överföra</a>
+                      <a type="button" class="btn btn-primary btn-lg m-b-10" asp-page="/Customerpages/Transfer" asp-route-customerId="@Model.Id">Överförning</a>
                   </div>
           </div>
           <div class="row">
