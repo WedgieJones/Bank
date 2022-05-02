@@ -6,6 +6,7 @@
 		{
 			Ok,
 			FaultyInformation,
+			CustomerAlreadyExists
 			
 		}
 		ErrorCode AddAccount(int customerId, string accountType);

@@ -32,6 +32,12 @@ namespace BankStartWeb.Transactions
 			string country, string countryCode, string nationalId,
 			int telephoneCountryCode, string telephone, string emailAddress, DateTime birthday)
 		{
+
+			if (_context.Customers.Any(customer => customer.NationalId == nationalId))
+			{
+				return ICustomerServices.ErrorCode.CustomerAlreadyExists;
+			}
+			
 			var customer = new Customer()
 			{
 				Givenname = givenname,
