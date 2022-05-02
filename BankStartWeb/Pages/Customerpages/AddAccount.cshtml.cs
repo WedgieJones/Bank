@@ -8,10 +8,10 @@ namespace BankStartWeb.Pages.Customerpages
 {
     public class AddAccountModel : PageModel
     {
-		private ITransactionServices _services;
+		private ICustomerServices _services;
 		private ApplicationDbContext _context;
 
-		public AddAccountModel(ApplicationDbContext context, ITransactionServices services)
+		public AddAccountModel(ApplicationDbContext context, ICustomerServices services)
 		{
             _services = services;
             _context = context;

@@ -36,6 +36,7 @@ builder.Services.AddRazorPages().AddRazorPagesOptions(options =>
 
 builder.Services.AddTransient<DataInitializer>();
 builder.Services.AddTransient<ITransactionServices, TransactionServices>();
+builder.Services.AddTransient<ICustomerServices, CustomerServices>();
 
 var app = builder.Build();
 

@@ -102,21 +102,6 @@ namespace BankStartWeb.Transactions
 			return ITransactionServices.ErrorCode.Ok;
 		}
 
-		public ITransactionServices.ErrorCode AddAccount(int customerId, string accountType)
-		{
-
-			var customer = _context.Customers.First(customer => customer.Id == customerId);
-			
-			var account = new Account()
-			{
-				AccountType = accountType,
-				Created = DateTime.Now,
-				Balance = 0
-			};
-			customer.Accounts.Add(account);
-			_context.SaveChanges();
-
-			return ITransactionServices.ErrorCode.Ok;
-		}
+		
 	}
 }

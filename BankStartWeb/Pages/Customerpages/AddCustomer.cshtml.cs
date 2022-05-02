@@ -1,3 +1,5 @@
+using BankStartWeb.Data;
+using BankStartWeb.Transactions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -6,6 +8,14 @@ namespace BankStartWeb.Pages.Customerpages
 {
     public class AddCustomerModel : PageModel
     {
+		private ICustomerServices _services;
+		private ApplicationDbContext _context;
+
+		public AddCustomerModel(ApplicationDbContext context, ICustomerServices services)
+		{
+            _services = services;
+            _context = context;
+		}
         public string Givenname { get; set; }
         public string Surname { get; set; }
         public string Streetaddress { get; set; }
@@ -23,6 +33,16 @@ namespace BankStartWeb.Pages.Customerpages
         
         public void OnGet()
         {
+        }
+        public void SetAllCountries()
+		{
+            AllCountries = _context.Customer.Select(customer => customer.Coun);
+
+            //AllAccountTypes = _context.Accounts.Select(a => a.AccountType).Distinct().Select(accountType => new SelectListItem
+            //{
+            //    Text = accountType,
+            //    Value = accountType
+            //}).ToList();
         }
         public IActionResult OnPost()
 		{
