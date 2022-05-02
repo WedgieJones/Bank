@@ -1,0 +1,38 @@
+﻿@page
+@model BankStartWeb.Pages.Customerpages.AddAccountModel
+@{
+}
+
+<section id="main-content">
+      <div class="page-header">
+        <div class="page-title">
+            <h1>Lägg till konto</h1>
+        </div>
+    </div>
+  <div class="row">
+      <div class="col-lg-6">
+          <div class="card">
+              <div class="card-title">
+                  <h4>@Model.Name</h4>
+                                    
+              </div>
+              <div class="card-body">
+                  <div class="basic-form">
+                      <form method="post">
+                          <div class="form-group">
+                              <label asp-for="AccountType">Konto</label>
+                              <select class="form-control" asp-for="AccountType" asp-items="@Model.AllAccountTypes" >
+                              </select>
+                              <span asp-validation-for="AccountType" class="field-validation-error"></span>
+                          </div>
+                         <input type="hidden" class="form-control" asp-for="CustomerId" value="@Model.CustomerId">
+
+                         <button type="submit" class="btn">Save</button>
+
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  </section>

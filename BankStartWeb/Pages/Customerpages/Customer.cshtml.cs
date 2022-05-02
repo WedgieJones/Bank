@@ -72,5 +72,7 @@ namespace BankStartWeb.Pages.Customerpages
              
         }
 
-	}
+        
+
+    }
 }

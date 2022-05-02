@@ -153,6 +153,8 @@ public class DataInitializer
         return person;
     }
 
+    
+
     private Account GenerateAccount()
     {
         string[] accountType = {"Personal", "Checking", "Savings"};

@@ -170,6 +170,13 @@ Birthday: @Model.Birthday
                                   }
                                  
                               </tr>
+                              <tr><td>Total summa</td>
+                                  <td></td>
+                                  <td></td>
+                                  <td>@Model.TotalBalance</td>
+                                  <td></td>
+
+                              </tr>
                               </tbody>
                           </table>
                       </div>
@@ -180,6 +187,7 @@ Birthday: @Model.Birthday
                       <a type="button" class="btn btn-primary btn-lg m-b-10" asp-page="/Customerpages/Deposit" asp-route-customerId="@Model.Id">Insättning</a>
                       <a type="button" class="btn btn-primary btn-lg m-b-10" asp-page="/Customerpages/Withdrawal" asp-route-customerId="@Model.Id">Uttag</a>
                       <a type="button" class="btn btn-primary btn-lg m-b-10" asp-page="/Customerpages/Transfer" asp-route-customerId="@Model.Id">Överförning</a>
+                      <a type="button" class="btn btn-primary btn-lg m-b-10" asp-page="/Customerpages/AddAccount" asp-route-customerId="@Model.Id">Lägg till konto</a>
                   </div>
           </div>
           <div class="row">
