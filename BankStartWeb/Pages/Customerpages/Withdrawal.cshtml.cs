@@ -32,7 +32,7 @@ namespace BankStartWeb.Pages.Customerpages
 		[BindProperty]
 		public int CustomerId { get; set; }
 		public List<Account> Accounts { get; set; }
-
+		public string Errormsg { get; set; }
 		public List<SelectListItem> AllAccounts { get; set; }
 
 		public void OnGet(int customerId)
@@ -59,6 +59,7 @@ namespace BankStartWeb.Pages.Customerpages
 
 		public IActionResult OnPost()
 		{
+			
 			int customerId = CustomerId;
 			int accountId = AccountId;
 			decimal amount = Amount;
@@ -66,10 +67,18 @@ namespace BankStartWeb.Pages.Customerpages
 
 			if (ModelState.IsValid)
 			{
-				_services.Withdraw(accountId, operation, amount);
-				return RedirectToPage("Customer", new { customerId });
-			}
+				var error = _services.Withdraw(accountId, operation, amount);
+				if (error == ITransactionServices.ErrorCode.BalanceTooLow)
+				{
+					ModelState.AddModelError("amount", "Beloppet är för stort! Det finns inte tillräckligt med pengar på kontot!");
+					//Errormsg = "Beloppet är för stort! Det finns inte tillräckligt med pengar på kontot!";
+					SetAllAccounts();
+					return Page();
+				}
+					return RedirectToPage("Customer", new { customerId });
 
+			}
+			
 			SetAllAccounts();
 			return Page();
 		}

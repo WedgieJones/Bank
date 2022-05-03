@@ -67,8 +67,15 @@ namespace BankStartWeb.Pages.Customerpages
 
 			if (ModelState.IsValid)
 			{
-				_services.Transfer(fromaccountId,toaccountId, amount);
-				return RedirectToPage("Customer", new { customerId });
+				var error = _services.Transfer(fromaccountId,toaccountId, amount);
+				if (error == ITransactionServices.ErrorCode.BalanceTooLow)
+				{
+					ModelState.AddModelError("amount", "Beloppet är för stort! Det finns inte tillräckligt med pengar på kontot!");
+					SetAllAccounts();
+					return Page();
+				}
+
+					return RedirectToPage("Customer", new { customerId });
 			}
 
 			SetAllAccounts();

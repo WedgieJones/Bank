@@ -3,44 +3,7 @@
 @{
 }
 
-@*Customername: @Model.Givenname @Model.Surname
-City: @Model.City
-Country: @Model.Country
-Streetadress: @Model.Streetaddress
-Zipcode: @Model.Zipcode
-Countrycode: @Model.CountryCode
-NationalId: @Model.NationalId
-Phone.CountryCode: @Model.TelephoneCountryCode
-Telephone; @Model.Telephone
-Email: @Model.EmailAddress
-Birthday: @Model.Birthday
 
-   
-<table>
-    <tr>
-        <th>AccountType</th>
-        <th>AccountId</th>
-        <th>Created</th>
-        <th>Balance</th>
-    </tr>
-       @foreach(var account in Model.Accounts)
-       {
-        <tr>
-           <td>@account.AccountType</td>
-           <td>@account.Id</td>
-           <td>@account.Created</td>
-           <td>@account.Balance</td>
-          <td><a class="ctabutton" asp-page="/CustomerPages/Transactiondetals" asp-route-accountId="@account.Id">View</a> </td>
-       </tr>
-       }
-       <tr>
-           <td>Total Balance</td>
-           <td></td>
-           <td></td>
-           <td>@Model.TotalBalance</td>
-           <td></td>
-       </tr>
-</table>*@
 
 <div class="content-wrap">
     <div class="main">
@@ -87,14 +50,18 @@ Birthday: @Model.Birthday
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="1">
                                 <div class="contact-information">
-                                    <h4>Kontakt information</h4>
+                                    <h4>kundinformation</h4>
+                                     <div class="address-content">
+                                        <span class="contact-title">Kundnummer:</span>
+                                        <span class="mail-address">@Model.Id</span>
+                                    </div>
+                                    <div class="address-content">
+                                        <span class="contact-title">Personnummer:</span>
+                                        <span class="mail-address">@Model.NationalId</span>
+                                    </div>
                                     <div class="phone-content">
                                         <span class="contact-title">Telefonnummer:</span>
                                         <span class="phone-number">+@Model.TelephoneCountryCode @Model.Telephone</span>
-                                    </div>
-                                    <div class="website-content">
-                                        <span class="contact-title">Personnummer:</span>
-                                        <span class="contact-website">@Model.NationalId</span>
                                     </div>
                                     <div class="address-content">
                                         <span class="contact-title">Stad:</span>

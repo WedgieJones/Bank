@@ -27,15 +27,15 @@ namespace BankStartWeb.Transactions
 
 			return ICustomerServices.ErrorCode.Ok;
 		}
-		public ICustomerServices.ErrorCode AddCustomer(string givenname, string surname,
+		public (ICustomerServices.ErrorCode, int) AddCustomer(string givenname, string surname,
 			string streetaddress, string city, string zipcode,
 			string country, string countryCode, string nationalId,
 			int telephoneCountryCode, string telephone, string emailAddress, DateTime birthday)
 		{
-
+		
 			if (_context.Customers.Any(customer => customer.NationalId == nationalId))
 			{
-				return ICustomerServices.ErrorCode.CustomerAlreadyExists;
+				return (ICustomerServices.ErrorCode.CustomerAlreadyExists, 0);
 			}
 			
 			var customer = new Customer()
@@ -55,8 +55,10 @@ namespace BankStartWeb.Transactions
 			};
 			_context.Customers.Add(customer);
 			_context.SaveChanges();
+			int customerid = customer.Id;
+			AddAccount(customerid, "Personal");
 
-			return ICustomerServices.ErrorCode.Ok; ;
+			return (ICustomerServices.ErrorCode.Ok, customerid); ;
 		}
 
 	}

@@ -47,6 +47,7 @@ namespace BankStartWeb.Pages.Customerpages
                    }
         public IActionResult OnPost()
 		{
+            
             if (ModelState.IsValid)
             {
                 string givenname = Givenname;
@@ -79,13 +80,13 @@ namespace BankStartWeb.Pages.Customerpages
                     telephoneCountryCode = 48;
                 }
 
-                _services.AddCustomer(givenname, surname, streetaddress, city, zipcode, country
+               var (ErrorCode, customerId) = _services.AddCustomer(givenname, surname, streetaddress, city, zipcode, country
                     , countryCode, nationalId, telephoneCountryCode, telephone, emailAddress, birthday);
 
-                return RedirectToPage("Customers");
+                return RedirectToPage("Customer", new { customerId });
 			}
 
-
+            
             SetAllCountries();
             return Page();
 		}
