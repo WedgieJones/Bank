@@ -17,14 +17,14 @@
   <div class="content-wrap">
         <div class="main">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-8 p-r-0 title-margin-right">
+                @*<div class="row">
+                   <div class="col-lg-10 p-r-0 title-margin-right">
                         <div class="page-header">
                             <div class="page-title">
                                 <h1></h1>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                     <!-- /# column -->
                     @*<div class="col-lg-4 p-l-0 title-margin-left">
                         <div class="page-header">
@@ -35,19 +35,19 @@
                                 </ol>
                             </div>
                         </div>
-                    </div>*@                    <!-- /# column -->
                 </div>
+                    </div>*@                    <!-- /# column -->
                 <!-- /# row -->
                 <section id="main-content">
                     <div class="row justify-content-center">
-                        <div class="col-12 col-xxl-8 col-xl-8 col-md-8 col-lg-auto col-sm-12">
+                        <div class="col-12 col-xxl-10 col-xl-10 col-md-10 col-lg-auto col-sm-12">
                             <div class="card">
                                 <div class="card-title">
                                     <h3>KundLista</h3>
                                 </div>
                                 <div class="bootstrap-data-table-panel">
                                     <div class="table-responsive">
-                                        <table id="row-select" class="display table table-borderd table-hover">
+                                        <table id="row-select" class="display table table-border table-hover">
                                             <thead>
                                                 <tr>
                                                     <th><a asp-route-col="Givenname" asp-route-order="asc"  asp-route-searchWord="@Model.SearchWord" asp-page="/Customerpages/Customers"><i class='bx bx-sort-up'></i></a> 
@@ -63,7 +63,7 @@
                                                         <a asp-route-col="nationalid" asp-route-order="desc"  asp-route-searchWord="@Model.SearchWord" asp-page="/Customerpages/Customers"><i class='bx bx-sort-down'></i></a>
                                                     </th>
                                                     <th>Stad</th>
-                                                    <th >Landskod</th>
+                                                  @*  <th >Landskod</th>*@
                                                     <th >Länk</th>
                                                 </tr>
                                             </thead>
@@ -76,7 +76,7 @@
                                                        <td>@customer.Surname</td>
                                                        <td>@customer.NationalId</td>
                                                        <td>@customer.City</td>
-                                                       <td>@customer.CountryCode</td>
+                                                     @*  <td>@customer.CountryCode</td>*@
                                                       <td><a class="ctabutton" asp-page="/CustomerPages/Customer" asp-route-customerId="@customer.Id">View</a> </td>
                                                    </tr>
                                                     }
@@ -105,7 +105,7 @@
                                                     <th>Förnamn</th>
                                                     <th>Efternamn</th>
                                                     <th>Personnummer</th>
-                                                    <th>Landskod</th>
+                                                    
                                                     <th>Stad</th>
                                                     <th>Länk</th>
                                                 </tr>

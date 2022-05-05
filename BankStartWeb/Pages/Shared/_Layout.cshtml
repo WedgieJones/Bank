@@ -52,6 +52,15 @@
                     <li><a asp-page="/Customerpages/Customers"><i class="ti-list"></i>Kunder</a></li>
                     <li><a asp-page="/Customerpages/AddCustomer"><i class="ti-user"></i>Lägg till kund</a></li>
 
+                    @{
+                        if(@User.IsInRole("Admin")){
+                         <li><a asp-page="/Customerpages/AddCustomer"><i class="ti-user"></i>Lägg till Användare</a></li>
+
+                        }
+                    }
+
+
+
                     @*<li class="label">Apps</li>
                     <li><a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i> Charts <span
                                 class="sidebar-collapse-icon ti-angle-down"></span></a>

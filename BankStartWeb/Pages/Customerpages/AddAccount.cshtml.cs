@@ -1,11 +1,13 @@
 using BankStartWeb.Data;
 using BankStartWeb.Transactions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BankStartWeb.Pages.Customerpages
 {
+    [Authorize]
     public class AddAccountModel : PageModel
     {
 		private ICustomerServices _services;
