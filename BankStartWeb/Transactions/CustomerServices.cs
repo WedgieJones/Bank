@@ -51,7 +51,7 @@ namespace BankStartWeb.Transactions
 				Telephone = telephone,
 				EmailAddress = emailAddress,
 				Birthday = birthday,
-				TelephoneCountryCode = telephoneCountryCode,
+				TelephoneCountryCode = telephoneCountryCode
 			};
 			_context.Customers.Add(customer);
 			_context.SaveChanges();
@@ -61,5 +61,32 @@ namespace BankStartWeb.Transactions
 			return (ICustomerServices.ErrorCode.Ok, customerid); ;
 		}
 
+
+
+		public (ICustomerServices.ErrorCode, int) EditCustomer(string givenname, string surname,
+			string streetaddress, string city, string zipcode, int customerId,
+			string country, string countryCode, int telephoneCountryCode, string telephone, string emailAddress)
+		{
+			if (!_context.Customers.Any(customer => customer.Id == customerId))
+			{
+				return (ICustomerServices.ErrorCode.CustomerDoesNotExist, 0);
+			}
+
+			var customer = _context.Customers.First(customer => customer.Id == customerId);
+			customer.Givenname = givenname;
+			customer.Surname = surname;
+			customer.Streetaddress = streetaddress;
+			customer.City = city;
+			customer.Zipcode = zipcode;
+			customer.TelephoneCountryCode = telephoneCountryCode;
+			customer.EmailAddress = emailAddress;
+			customer.Telephone = telephone;
+			customer.Country = country;
+			customer.CountryCode = countryCode;
+			
+			_context.SaveChanges();
+
+			return (ICustomerServices.ErrorCode.Ok, customerId);
+		}
 	}
 }

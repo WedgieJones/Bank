@@ -43,8 +43,7 @@ namespace BankStartWeb.Pages.Customerpages
                 Text = country,
                 Value = country
 			}).ToList();
-
-                   }
+        }
         public IActionResult OnPost()
 		{
             

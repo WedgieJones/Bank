@@ -6,87 +6,46 @@
 
   <section id="main-content">
       <div class="page-header">
-                            <div class="page-title">
-                                <h1>Insättning</h1>
-                            </div>
-                        </div>
-  <div class="row">
-      <div class="col-lg-6">
-          <div class="card">
-              <div class="card-title">
-                  <h4>@Model.Name</h4>
+            <div class="page-title">
+                 <h1>Insättning</h1>
+            </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-6">
+              <div class="card">
+                  <div class="card-title">
+                      <h4>@Model.Name</h4>
                                     
-              </div>
-              <div class="card-body">
-                  <div class="basic-form">
-                      <form method="post">
-                          <div class="form-group">
-                              <label asp-for="AccountId">Konto</label>
-                              <select class="form-control" asp-for="AccountId" asp-items="@Model.AllAccounts" >
-                              </select>
-                              <span asp-validation-for="AccountId" class="field-validation-error"></span>
-                          </div>
-                          <div class="form-group">
-                              <label asp-for="Operation">Information on insättning</label>
-                              <input class="form-control" asp-for="Operation">
-                              <span asp-validation-for="Operation" class="field-validation-error"></span>
-                          </div>
-                          <div class="form-group">
-                              <label asp-for="Amount">Belopp</label>
-                              <input class="form-control" asp-for="Amount">
-                              <span asp-validation-for="Amount" class="field-validation-error"></span>
-                          </div>
-                          <input type="hidden" class="form-control" asp-for="CustomerId" value="@Model.CustomerId">
+                  </div>
+                  <div class="card-body">
+                      <div class="basic-form">
+                          <form method="post">
+                              <div class="form-group">
+                                  <label asp-for="AccountId">Konto</label>
+                                  <select class="form-control" asp-for="AccountId" asp-items="@Model.AllAccounts" >
+                                  </select>
+                                  <span asp-validation-for="AccountId" class="field-validation-error"></span>
+                              </div>
+                              <div class="form-group">
+                                  <label asp-for="Operation">Information on insättning</label>
+                                  <input class="form-control" asp-for="Operation">
+                                  <span asp-validation-for="Operation" class="field-validation-error"></span>
+                              </div>
+                              <div class="form-group">
+                                  <label asp-for="Amount">Belopp</label>
+                                  <input class="form-control" asp-for="Amount">
+                                  <span asp-validation-for="Amount" class="field-validation-error"></span>
+                              </div>
+                              <input type="hidden" class="form-control" asp-for="CustomerId" value="@Model.CustomerId">
 
-                         <button type="submit" class="btn">Save</button>
+                             <button type="submit" class="btn">Save</button>
 
-                      </form>
+                          </form>
+                      </div>
                   </div>
               </div>
           </div>
       </div>
-  </div>
   </section>
 
-@*<div class="container-fluid">
-<div class="row">
-    <div class="col-lg-8 p-r-0 title-margin-right">
-        <div class="page-header">
-            <div class="page-title">
-                <h1>Hello,@User.Identity?.Name <span>Welcome Here</span></h1>
-            </div>
-        </div>
-    </div>
-    <!-- /# column -->
-    <div class="col-lg-4 p-l-0 title-margin-left">
-        <div class="page-header">
-            <div class="page-title">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Home</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-    <!-- /# column -->
-<!-- /# row -->
-<section id="main-content">
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="card">
-                <div class="stat-widget-one">
-                    <div class="stat-icon dib"><i class="ti-money color-success border-success"></i>
-                    </div>
-                    <div class="stat-content dib">
-                        <div class="stat-text">Antal kunder</div>
-                        <div class="stat-digit">NumOfCustomers</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-    
-</section>
-</div>*@
 

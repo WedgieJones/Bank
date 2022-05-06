@@ -29,6 +29,7 @@ namespace BankStartWeb.Pages.Customerpages
 			public string Surname { get; set; }
 			public string NationalId { get; set; }
 			public string CountryCode { get; set; }
+			public string Address { get; set; }
 			public string City { get; set; }
 			public int Id { get; set; } 
 
@@ -62,8 +63,8 @@ namespace BankStartWeb.Pages.Customerpages
 				Surname = s.Surname,
 				NationalId = s.NationalId,
 				CountryCode = s.CountryCode,
-				City = s.City,
-				Id = s.Id
+				Id = s.Id,
+				Address = s.Streetaddress + ", " + s.City,
 			}).ToList();
 		}
 	}
