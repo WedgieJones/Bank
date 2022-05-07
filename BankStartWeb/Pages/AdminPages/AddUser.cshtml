@@ -31,10 +31,10 @@
                                 <span asp-validation-for="Password" class="field-validation-error"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Roles">Roll</label>
-                                <select class="form-control" asp-for="Roles" asp-items="@Model.AllRoles" >
+                                <label asp-for="Role">Roll</label>
+                                <select class="form-control" asp-for="Role" asp-items="@Model.AllRoles" >
                                 </select>
-                                <span asp-validation-for="Roles" class="field-validation-error"></span>
+                                <span asp-validation-for="Role" class="field-validation-error"></span>
                             </div>
                             <button type="submit" class="btn">Save</button>
                         </form>

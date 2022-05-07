@@ -24,7 +24,8 @@ namespace BankStartWeb.Pages.AdminPages
         public string Email { get; set; }
         [BindProperty]
         public string Password { get; set; }
-       
+        [BindProperty]
+        public string Role { get; set; }
         public List<SelectListItem> AllRoles { get; set; }
         public List<string> Roles { get; set; }	
         public void OnGet()
@@ -36,14 +37,15 @@ namespace BankStartWeb.Pages.AdminPages
                 AllRoles = _context.Roles.Select(role => new SelectListItem
                 {
                     Text = role.Name,
-                    Value = role.Id.ToString()
+                    Value = role.Name
                 }).ToList();
             }
-        public IActionResult OnPost(string email, string password, string role)
+        public IActionResult OnPost()
         {
+            var role = Role;
             Roles.Add(role);
-            email = Email.Trim();
-            password = Password.Trim();
+            var email = Email.Trim();
+            var password = Password.Trim();
 
             string[] roles = Roles.ToArray();
 
