@@ -91,6 +91,34 @@ namespace BankTest.Services
 		}
 		
 		[TestMethod]
+		public void Check_If_TransAction_Is_Correct_Created()
+		{
+			var a = new Account();
+			var b = new Account();
+			a.Balance = 500;
+			a.AccountType = "Test";
+			a.Created = DateTime.Now;
+			a.Transactions = new List<Transaction>();
+			b.Balance = 500;
+			b.AccountType = "Test";
+			b.Created = DateTime.Now;
+			b.Transactions = new List<Transaction>();
+
+			_context.Accounts.Add(a);
+			_context.Accounts.Add(b);
+			_context.SaveChanges();
+
+			var result = _sut.Transfer(1, 2, 500);
+			var fromTransaction = a.Transactions.Last();
+			Assert.AreEqual("Credit", fromTransaction.Type);
+			Assert.AreEqual("Overförning till kto:2", fromTransaction.Operation);
+			var toTransaction = b.Transactions.Last();
+			Assert.AreEqual("Debit", toTransaction.Type);
+			Assert.AreEqual("Overförning från kto:1" , toTransaction.Operation);
+
+			Assert.AreEqual(ITransactionServices.ErrorCode.Ok, result);
+		}
+		[TestMethod]
 
 
 	}

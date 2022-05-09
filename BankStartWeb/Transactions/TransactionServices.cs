@@ -92,7 +92,7 @@ namespace BankStartWeb.Transactions
 			{
 				Amount = amount,
 				Type = "Debit",
-				Operation = "Overförning från kto: "+ fromAccountId,
+				Operation = "Overförning från kto:"+ fromAccountId,
 				Date = DateTime.Now,
 				NewBalance = debitAccount.Balance,
 			};
