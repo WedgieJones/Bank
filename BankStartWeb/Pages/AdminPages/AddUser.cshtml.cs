@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace BankStartWeb.Pages.AdminPages
 {
@@ -11,11 +12,13 @@ namespace BankStartWeb.Pages.AdminPages
     [Authorize(Roles = "Admin")]
     public class AddUserModel : PageModel
     {
-        private ApplicationDbContext _context;
+		private RoleManager<IdentityRole> _roleManager;
+		private ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public AddUserModel(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public AddUserModel(ApplicationDbContext context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager )
         {
+            _roleManager = roleManager;
             _context = context;
             _userManager = userManager;
         }
@@ -23,11 +26,13 @@ namespace BankStartWeb.Pages.AdminPages
         [BindProperty]
         public string Email { get; set; }
         [BindProperty]
+        [DataType(DataType.Password, ErrorMessage= "Ett lösenord måste innehålla 7 tecken, stora och små bokstaver och 1 symbol")]
+        [Required]
         public string Password { get; set; }
         [BindProperty]
         public string Role { get; set; }
         public List<SelectListItem> AllRoles { get; set; }
-        public List<string> Roles { get; set; }	
+        public List<string> Roles { get; set; }	= new List<string>();
         public void OnGet()
         {
             SetAllRoles();
@@ -48,6 +53,7 @@ namespace BankStartWeb.Pages.AdminPages
             var password = Password.Trim();
 
             string[] roles = Roles.ToArray();
+  ;
 
             if (_userManager.FindByEmailAsync(email).Result != null)
                 return StatusCode(400, "Email already exists");
@@ -61,8 +67,20 @@ namespace BankStartWeb.Pages.AdminPages
                     EmailConfirmed = true
                 };
 
-                _userManager.CreateAsync(user, password).Wait();
-                _userManager.AddToRolesAsync(user, roles).Wait();
+                var result = _userManager.CreateAsync(user, password).Result;
+                if (result.Succeeded)
+                {
+
+                    //var result = _userManager.CreateAsync(user, password).Wait();
+                    _userManager.AddToRoleAsync(user, role).Wait();
+                    return RedirectToPage("/Index");
+                }
+				else
+				{
+                    ModelState.AddModelError(nameof(Password), "Ett lösenord måste innehålla 7 tecken, stora och små bokstaver och 1 symbol");
+				}
+				
+
             }
             SetAllRoles();
             return Page();

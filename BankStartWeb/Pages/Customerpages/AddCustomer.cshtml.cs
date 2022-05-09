@@ -28,7 +28,8 @@ namespace BankStartWeb.Pages.Customerpages
         [BindProperty] [MaxLength(20)] public string NationalId { get; set; }
         [BindProperty] public string Telephone { get; set; }
         [BindProperty] [MaxLength(50)] public string EmailAddress { get; set; }
-        [BindProperty] public DateTime Birthday { get; set; }
+        [BindProperty, DataType(DataType.Date)] 
+        public DateTime Birthday { get; set; } = DateTime.Now;
        
         public List<SelectListItem> AllCountries { get; set; }
         

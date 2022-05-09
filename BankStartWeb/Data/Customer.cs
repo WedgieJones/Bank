@@ -1,7 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace BankStartWeb.Data;
-
+[Index(nameof(Givenname), nameof(Surname), nameof(City))]
 public class Customer
 {
     public int Id { get; set; }

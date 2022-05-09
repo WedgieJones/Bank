@@ -41,7 +41,8 @@ namespace BankStartWeb.Pages.Customerpages
 			SortOrder = order;
 			SearchWord = searchWord;
 
-			var cust = _context.Customers.Take(600);
+			var cust = _context.Customers.Select(c=>c);
+			var number = cust.Count();
 
 			if(!string.IsNullOrEmpty(SearchWord))
 			cust = cust.Where(c => c.Givenname.Contains(SearchWord)
@@ -53,7 +54,7 @@ namespace BankStartWeb.Pages.Customerpages
 				ExtensionMethods.QuerySortOrder.Desc);
 
 
-			var pageResult = cust.GetPaged(pageno, 600);
+			var pageResult = cust.GetPaged(pageno, number );
 			TotalPageCount = pageResult.PageCount;
 
 			Customers = pageResult.Results.Select(s =>

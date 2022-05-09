@@ -44,13 +44,14 @@ namespace BankStartWeb.Pages.Customerpages
             public List<Transaction> Transactions { get; set; } = new List<Transaction>();
         }
 
-        public void OnGet(int customerId)
+        public IActionResult OnGet(int customerId)
         {
             Id = customerId;
 
 			var customer = _context.Customers
                 .Include(a => a.Accounts)
-                .First(x => x.Id == customerId);
+                .FirstOrDefault(x => x.Id == customerId);
+            if (customer == null) return RedirectToPage("/Index");
 			Givenname = customer.Givenname;
 			Surname = customer.Surname;
 			Streetaddress = customer.Streetaddress;
@@ -69,7 +70,8 @@ namespace BankStartWeb.Pages.Customerpages
 			{
                 TotalBalance = TotalBalance + account.Balance;
 			}
-             
+
+            return Page();
         }
 
         

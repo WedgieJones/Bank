@@ -13,11 +13,6 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 		{
-			options.Password.RequiredLength = 8;
-            options.Password.RequireDigit = true;
-            options.Password.RequireUppercase = true;
-
-			options.SignIn.RequireConfirmedAccount = true;
 		}
 		)
 	.AddRoles<IdentityRole>()

@@ -29,7 +29,8 @@ namespace BankStartWeb.Pages.Customerpages
         public string NationalId { get; }
 		[BindProperty] public string Telephone { get; set; }
         [BindProperty] [MaxLength(50)] public string EmailAddress { get; set; }
-        [BindProperty] public DateTime Birthday { get; set; }
+        [BindProperty, DataType(DataType.Date)]
+        public DateTime Birthday { get; set; }
         [BindProperty] public int TelephoneCountryCode { get; set; }
         public List<SelectListItem> AllCountries { get; set; }
         public int CustomerId { get; set; }
@@ -45,6 +46,7 @@ namespace BankStartWeb.Pages.Customerpages
             Telephone = customer.Telephone;
             EmailAddress = customer.EmailAddress;
             CustomerId = customerId;
+            Birthday = customer.Birthday;
             SetAllCountries();
         }
         public void SetAllCountries()

@@ -89,6 +89,9 @@ namespace BankTest.Services
 			var result = _sut.Transfer(1, 2, 1);
 			Assert.AreEqual(ITransactionServices.ErrorCode.Ok, result);
 		}
+		
+		[TestMethod]
+
 
 	}
 }
