@@ -65,7 +65,13 @@ namespace BankStartWeb.Pages.Customerpages
 	        
 			if (ModelState.IsValid)
 			{
-				_services.Deposit(accountId, operation, amount);
+				var error = _services.Deposit(accountId, operation, amount);
+				if(error== ITransactionServices.ErrorCode.AmountIsNegative)
+				{
+					ModelState.AddModelError("amount", "Beloppet kan inte vara negativt");
+					SetAllAccounts();
+					return Page();
+				}
 		        return RedirectToPage("Customer", new {customerId}) ;
 	        }
 			
