@@ -18,16 +18,19 @@ namespace BankStartWeb.Pages.Customerpages
             _context = context;
 		}
         [BindProperty]
+        [Required]
         [MaxLength(50)]
         public string Givenname { get; set; }
-        [BindProperty] [MaxLength(50)] public string Surname { get; set; }
-        [BindProperty] [MaxLength(50)] public string Streetaddress { get; set; }
-        [BindProperty] [MaxLength(50)] public string City { get; set; }
-        [BindProperty] [MaxLength(10)] public string Zipcode { get; set; }
-        [BindProperty] [MaxLength(30)] public string Country { get; set; }
-        [BindProperty] [MaxLength(20)] public string NationalId { get; set; }
-        [BindProperty] public string Telephone { get; set; }
-        [BindProperty] [MaxLength(50)] public string EmailAddress { get; set; }
+        [Required] [BindProperty] [MaxLength(50)] public string Surname { get; set; }
+        [Required] [BindProperty] [MaxLength(50)] public string Streetaddress { get; set; }
+        [Required] [BindProperty] [MaxLength(50)] public string City { get; set; }
+        [Required] [BindProperty] [MaxLength(10)] public string Zipcode { get; set; }
+        [Required] [BindProperty] [MaxLength(30)] public string Country { get; set; }
+        [Required] [BindProperty] [MaxLength(20)] public string NationalId { get; set; }
+        [Required] [BindProperty] public string Telephone { get; set; }
+        [Required] [BindProperty] [MaxLength(50)] public string EmailAddress { get; set; }
+        [Required]
+        
         [BindProperty, DataType(DataType.Date)] 
         public DateTime Birthday { get; set; } = DateTime.Now;
        

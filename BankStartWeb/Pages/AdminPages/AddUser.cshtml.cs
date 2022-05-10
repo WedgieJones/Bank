@@ -24,6 +24,7 @@ namespace BankStartWeb.Pages.AdminPages
         }
 
         [BindProperty]
+        [Required]
         public string Email { get; set; }
         [BindProperty]
         [DataType(DataType.Password, ErrorMessage= "Ett lösenord måste innehålla 7 tecken, stora och små bokstaver och 1 symbol")]

@@ -112,14 +112,14 @@ namespace BankTest.Services
 			var fromTransaction = a.Transactions.Last();
 			Assert.AreEqual("Credit", fromTransaction.Type);
 			Assert.AreEqual("Overförning till kto:2", fromTransaction.Operation);
+			Assert.AreEqual(0, fromTransaction.NewBalance);
 			var toTransaction = b.Transactions.Last();
 			Assert.AreEqual("Debit", toTransaction.Type);
 			Assert.AreEqual("Overförning från kto:1" , toTransaction.Operation);
-
+			Assert.AreEqual(1000, toTransaction.NewBalance);
 			Assert.AreEqual(ITransactionServices.ErrorCode.Ok, result);
+
 		}
-		[TestMethod]
-
-
+		
 	}
 }

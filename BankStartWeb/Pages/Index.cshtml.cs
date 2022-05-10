@@ -1,6 +1,7 @@
 ﻿using BankStartWeb.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace BankStartWeb.Pages
@@ -19,7 +20,8 @@ namespace BankStartWeb.Pages
         public int customerId { get; set; }
 		public int NumOfAccounts { get; set; }
         public int NumOfCustomers { get; set; }
-		public decimal TotalAmount { get; set; }
+		
+        public decimal TotalAmount { get; set; }
 		public void OnGet()
         {
             NumOfAccounts = _context.Accounts.Count();
@@ -30,6 +32,10 @@ namespace BankStartWeb.Pages
                 TotalAmount = TotalAmount + account.Balance;
 
 			}
-		}
+            
+
+
+
+        }
     }
 }
