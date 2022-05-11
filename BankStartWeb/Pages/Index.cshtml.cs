@@ -32,10 +32,7 @@ namespace BankStartWeb.Pages
                 TotalAmount = TotalAmount + account.Balance;
 
 			}
-            
-
-
-
+          
         }
     }
 }

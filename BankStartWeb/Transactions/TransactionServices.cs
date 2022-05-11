@@ -14,7 +14,7 @@ namespace BankStartWeb.Transactions
 
 		public ITransactionServices.ErrorCode Deposit(int accountId, string operation, decimal amount)
 		{
-			if (amount < 0)
+			if (amount <= 0)
 			{
 				return ITransactionServices.ErrorCode.AmountIsNegative;
 			}
@@ -39,7 +39,7 @@ namespace BankStartWeb.Transactions
 		public ITransactionServices.ErrorCode Withdraw(int accountId, string operation, decimal amount)
 		{
 
-			if (amount < 0)
+			if (amount <= 0)
 			{
 				return ITransactionServices.ErrorCode.AmountIsNegative;
 			}
@@ -65,7 +65,7 @@ namespace BankStartWeb.Transactions
 
 		public ITransactionServices.ErrorCode Transfer(int fromAccountId, int toAccount, decimal amount)
 		{
-			if (amount < 0)
+			if (amount <= 0)
 			{
 				return ITransactionServices.ErrorCode.AmountIsNegative;
 			}
